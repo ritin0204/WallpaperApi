@@ -83,6 +83,6 @@ This endpoint retrieves wallpapers based on the provided search criteria or rand
      ```
 
 ## Footer
-APIs are provided by [Wallhaven](https://wallhaven.cc/).
+APIs are build by scraping [Wallhaven](https://wallhaven.cc/).
 
 Developed by [@Ritin Tiwari](https://www.github.com/ritin0204).
