@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Desktop Wallpaper API Documentation</title>
+</head>
+
+<body>
+    <h1>Desktop Anime Wallpaper API Documentation</h1>
+
+    <h2>Index</h2>
+    <p>This endpoint provides a list of available API endpoints with their descriptions and links.</p>
+    <h3>Endpoint:</h3>
+    <ul>
+        <li>
+            <strong>URL:</strong> /
+            <br>
+            <strong>Method:</strong> GET
+        </li>
+    </ul>
+
+    <h2>Get Wallpaper</h2>
+    <p>This endpoint retrieves wallpapers based on the provided search criteria or randomly.</p>
+    <h3>Endpoint:</h3>
+    <ul>
+        <li>
+            <strong>URL:</strong> /api/wallpapers/name;
+            <br>
+            <strong>Method:</strong> GET
+            <p>Get wallpaper by character name</p>
+        </li>
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li>&lt;name&gt; (required): The name of the wallpaper to search for. It can also be set to "random" to get a
+            random wallpaper.</li>
+    </ul>
+
+    <h3>Query Parameters:</h3>
+    <ul>
+        <li>limit (optional): The maximum number of wallpapers to retrieve. Default value is 1.</li>
+        <li>width (optional): The desired width of the wallpaper in pixels. Default value is 1920.</li>
+        <li>height (optional): The desired height of the wallpaper in pixels. Default value is 1080.</li>
+    </ul>
+
+    <h3>Successful Response:</h3>
+    <ul>
+        <li>Status Code: 200 (OK)</li>
+        <li>Body: A JSON array of wallpaper objects. Each object contains the following fields:
+            <ul>
+                <li>name: The title of the wallpaper.</li>
+                <li>url: The URL of the wallpaper image.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Error Responses:</h3>
+    <ul>
+        <li>Status Code: 400 (Bad Request)</li>
+        <li>Body: A JSON object with an error field indicating the error message.</li>
+    </ul>
+
+    <h3>Examples:</h3>
+    <ol>
+        <li>
+            <strong>Retrieve a wallpaper by name:</strong>
+            <ul>
+                <li>URL: /api/wallpapers/nature</li>
+                <li>Method: GET</li>
+                <li>Response:
+                    <pre>
+[
+    {
+        "title": "Nature Wallpaper",
+        "url": "https://example.com/nature.jpg",
+    }
+]
+                    </pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <strong>Retrieve a random wallpaper:</strong>
+            <ul>
+                <li>URL: /api/wallpapers/random</li>
+                <li>Method: GET</li>
+                <li>Response:
+                    <pre>
+[
+    {
+        "title": "Random Wallpaper",
+        "url": "https://example.com/random.jpg",
+    }
+]
+                    </pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <strong>Retrieve multiple wallpapers by name and set limit, width, and height:</strong>
+            <ul>
+                <li>URL: /api/wallpapers/cars</li>
+                <li>Get Data Parameters
+                    <ul>
+                        <li>limit: 5</li>
+                        <li>width: 1280</li>
+                        <li>height: 720</li>
+                    </ul>
+                </li>
+                <li>Method: GET</li>
+                <li>Response:
+                    <pre>
+[
+    {
+        "title": "Car Wallpaper 1",
+        "url": "https://example.com/car1.jpg",
+    },
+    {
+        "title": "Car Wallpaper 2",
+        "url": "https://example.com/car2.jpg",
+    },
+    // ...
+]
+                    </pre>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <footer>
+        <p>APIs are provided by <a href="https://wallhaven.cc/">Wallhaven</a></p>
+        <p>Developed by <a href="https://www.github.com/ritin0204"><b>@Ritin Tiwari</b></a></p>
+    </footer>
+</body>
+
+</html>
