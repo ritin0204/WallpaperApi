@@ -6,21 +6,7 @@ from random import randint
 
 # Create your views here.
 def index(request):
-    api_urls = [
-        {
-            "name": "Search by Name",
-            "description": "GET /Name",
-            "link": "/api/wallpapers/<name>"
-        },
-        {
-            "name": "get a random wallpaper",
-            "description": "GET /random",
-            "link": "/api/wallpapers/random"
-        }
-    ]
-    return render(request, 'desktop_wallpaper_api/index.html', {
-        "apis": api_urls,
-    })
+    return render(request, 'desktop_wallpaper_api/index.html')
 
 
 def get_wallpaper(request, name):
