@@ -34,13 +34,4 @@ def get_wallpaper(request, name):
     # Returns a list of dictionaries Limit = 1 by default
     wallpapers = scrape.get_wallpapers(limit=limit)
     
-    if not wallpapers:
-        return JsonResponse({"error": "No Wallpaper Found"}, safe=False)
-    
-    # Create Wallpaper Objects from the list of dictionaries
-    response_data = []
-    for wallpaper in wallpapers:
-        if wallpaper:
-            response_data.append(wallpaper)
-            
-    return JsonResponse(response_data, safe=False)
+    return JsonResponse(wallpapers, safe=False)

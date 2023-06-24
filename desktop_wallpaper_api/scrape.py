@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
+import imghdr
+from urllib.parse import urlparse
 
 
 class ScrapeWallpaper:
@@ -11,23 +13,18 @@ class ScrapeWallpaper:
     def get_wallpapers(self, limit):
         html_page = requests.get(self.url)
         soup = BeautifulSoup(html_page.text, 'html.parser')
-        a_tags =  soup.find_all('a', class_='preview')
+        img_tags =  soup.find_all('figure', class_='thumb', limit=limit)
         links = [] 
-        count = 0
-        for i in a_tags:
-            if i.get('href').startswith('https://wallhaven.cc/w/'):
-                links.append(self.get_wallpaper_by_link(i.get('href')))
-                count += 1
-            if len(links) == limit or count == 10:
-                return links
-        return links
+        for img in img_tags:
+            img_id = img['data-wallpaper-id']
+            link = f"https://w.wallhaven.cc/full/{img_id[:2]}/wallhaven-{img_id}"
+            link = link + self.get_image_type(link)
+            links.append(link)
+        return {"name": self.keyword, "imageURL": links}
     
     
-    def get_wallpaper_by_link(self, link):
-        html_page = requests.get(link)
-        soup = BeautifulSoup(html_page.text, 'html.parser')
-        image = soup.find('img', id='wallpaper')
-        return {"name": self.keyword ,"url": image.get('src')} if image else None
-        
-        
-        
+    def get_image_type(self, image_url):
+        image_type = ['.jpg', '.png','.jpeg']
+        for img_type in image_type:
+            if requests.get(image_url + img_type).status_code == 200:
+                return img_type
