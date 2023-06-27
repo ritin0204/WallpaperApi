@@ -28,7 +28,7 @@ def get_wallpaper(request, name):
         wallpapers = scrape.get_wallpapers(limit=limit)
         return JsonResponse(wallpapers, safe=False)
     
-    scrape = ScrapeWallpaper(keyword=name, url=f"https://wallhaven.cc/search?q={name}&categories=111&purity=100&resolutions={resolution_width}x{resolution_height}&sorting=relevance&order=desc&ai_art_filter=0")
+    scrape = ScrapeWallpaper(keyword=name, url=f"https://wallhaven.cc/search?q={name}&categories=111&purity=100&atleast={resolution_width}x{resolution_height}&sorting=random&order=desc&ai_art_filter=0")
     
     # Get Wallpapers from the ScrapeWallpaper Class
     # Returns a list of dictionaries Limit = 1 by default
